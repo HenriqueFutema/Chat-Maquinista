@@ -26,6 +26,7 @@ export default class SignInComponent extends Component{
         
         if (err ==='') {
             swal("Bem Vindo", "Seja bem vindo", "success")
+            localStorage.setItem('token', user.data.token)
             this.props.onRedirectChat()
         }
         

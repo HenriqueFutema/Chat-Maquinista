@@ -2,7 +2,31 @@ import React, { Component } from 'react';
 
 import './style2.css';
 
+import api from '../services/api'
+
 export default class ChatComponent extends Component {
+
+    state={
+        msg: '',
+        you: [],
+        bot: [],
+        mensagens:[]
+    }
+
+    handleSubmit = async e =>{
+        e.preventDefault()
+        this.setState({ mensagens: [...this.state.mensagens, {name: 'Você', text: this.state.msg} ] })
+        const token = await localStorage.getItem('token')
+        const msg = await api.post('/message', {text:this.state.msg, content:{}},      {
+            headers: { Authorization: "Bearer " + token }
+          })
+        console.log(msg.data.output.text);
+          const bot_output =msg.data.output.text
+        this.setState({mensagens: [...this.state.mensagens, {name: 'Maquinista', text: bot_output}]})
+        
+        this.setState({msg: ''})
+    }
+
   render() {
     return(
   <div class="container">
@@ -10,15 +34,25 @@ export default class ChatComponent extends Component {
       <div class="row">
         <div class='chatbox col-md-12'>
           <div class="row">
-            <div class="chatbox__messages ">
-                <div class="chatbox__messages__user-message--ind-message ">
+            <div class="chatbox__messages__user-message--ind-message chatbox__messages mt-3">
+                <div class="col-lg-12">
                   <p class="name">O Maquinista</p><br/>
                   <p class="message">Olá, seja bem vindo, eu sou O Maquinista e irei ajudar você a escolher o seu curso na FIAP.</p>
                 </div>
+
             </div>
+
+{ this.state.mensagens.map((msg) => (
+            <div class="chatbox__messages__user-message--ind-message chatbox__messages mt-3 col-lg-11">
+              <p class="col-lg-8">{msg.name}:
+              <br/>
+              {msg.text}
+              </p>
+            </div>
+            )) }
           </div>
-          <form>
-            <input type="text" placeholder="Digite uma mensagem.." />
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" placeholder="Digite uma mensagem.." value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
           </form>
         </div>
       </div>
