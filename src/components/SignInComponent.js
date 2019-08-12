@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 
 import './style.css';
 
 import Logo from '../assets/logo.png'
 
+import api from '../services/api'
+import swal from 'sweetalert'
+
 export default function SignInComponent() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSubmit = useCallback(async (e) =>{
+        e.preventDefault()
+        let err = ''
+        const user = await api.post('signin',{email, password})
+        .catch(function(erro){
+            swal("Erro", "Email ou senha incorreta", "error")
+            err = erro
+        })
+        
+        if (err ==='') {
+            swal("Bem Vindo", "Seja bem vindo", "success")
+        }
+        
+        
+    }, [email, password,])
+
+
   return (
     <div className="container-fluid register">
     <div className="row">
@@ -19,15 +43,15 @@ export default function SignInComponent() {
       <div className="col-md-5 register-right">
         <h2 className="register-heading">Efetuar Login</h2>
         <center>
-          <div className="register-form">
+          <form className="register-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input type="text" className="form-control" placeholder="Nome de usuário *" />
+              <input type="text" className="form-control" placeholder="Nome de usuário *" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div className="form-group">
-              <input type="password" className="form-control" placeholder="Senha *"/>
+              <input type="password" className="form-control" placeholder="Senha *" value={password} onChange={e => setPassword(e.target.value)} />
             </div>
-            <input type="submit" className="btnRegister"  value="Login"/>
-        </div>
+            <button type="submit" className="btn btnRegister">Login</button>
+        </form>
           </center>
       </div>
     </div>
