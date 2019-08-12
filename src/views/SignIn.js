@@ -1,8 +1,9 @@
 import React from 'react';
 
+import SignInComponent from '../components/SignInComponent'
 
 export default function SignIn() {
   return (
-    <h1>Test</h1>
+    <SignInComponent/>
   );
 }
