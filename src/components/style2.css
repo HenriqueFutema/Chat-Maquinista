@@ -1,0 +1,62 @@
+html,
+body {
+    background: -webkit-linear-gradient(right, #81F1A3, #222);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    margin-top: 2%;
+}
+
+.chatbox {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.2em;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+}
+
+.chatbox__messages:nth-of-type(odd) .chatbox__messages__user-message--ind-message {
+    float: left;
+}
+
+.chatbox__messages__user-message--ind-message {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1em 0;
+    height: auto;
+    width: 65%;
+    border-radius: 5px;
+    margin: 2em 1em;
+    overflow: auto;
+}
+
+.chatbox__messages__user-message--ind-message>p.message {
+    color: #FFF;
+    font-size: 0.9em;
+    margin: 0 2.8em;
+}
+
+.chatbox p {
+    float: left;
+    text-align: left;
+    margin: -0.25em 2em;
+    font-weight: 300;
+    color: #FFF;
+}
+
+.chatbox form input {
+    background: rgba(255, 255, 255, 0.03);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: none;
+    width: 100%;
+    padding: 1.2em;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+.name {
+    padding-bottom: 2%;
+    font-size: 1.2em;
+}

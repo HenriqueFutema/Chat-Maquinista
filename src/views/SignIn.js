@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import SignInComponent from '../components/SignInComponent'
 
-export default function SignIn() {
+export default class SignIn extends Component {
+
+    onRedirectChat = () =>{
+        this.props.history.push('/chat')
+    }
+
+render(){
+
   return (
-    <SignInComponent/>
-  );
+    <SignInComponent onRedirectChat={this.onRedirectChat}/>
+    );
+ 
+}
+
 }

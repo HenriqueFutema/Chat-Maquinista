@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { Component } from 'react';
 
 import './style.css';
 
@@ -7,14 +7,17 @@ import Logo from '../assets/logo.png'
 import api from '../services/api'
 import swal from 'sweetalert'
 
-export default function SignInComponent() {
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = useCallback(async (e) =>{
+export default class SignInComponent extends Component{
+    
+    state = {
+    email: '',
+    password: ''
+    }
+    
+    handleSubmit = async (e) =>{
         e.preventDefault()
         let err = ''
+        const { email, password } =this.state
         const user = await api.post('signin',{email, password})
         .catch(function(erro){
             swal("Erro", "Email ou senha incorreta", "error")
@@ -23,10 +26,13 @@ export default function SignInComponent() {
         
         if (err ==='') {
             swal("Bem Vindo", "Seja bem vindo", "success")
+            this.props.onRedirectChat()
         }
         
-        
-    }, [email, password,])
+    }
+
+
+    render(){
 
 
   return (
@@ -43,12 +49,12 @@ export default function SignInComponent() {
       <div className="col-md-5 register-right">
         <h2 className="register-heading">Efetuar Login</h2>
         <center>
-          <form className="register-form" onSubmit={handleSubmit}>
+          <form className="register-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input type="text" className="form-control" placeholder="Nome de usuário *" value={email} onChange={e => setEmail(e.target.value)} />
+              <input type="text" className="form-control" placeholder="Nome de usuário *" value={this.state.email} onChange={e => this.setState({email: e.target.value})} />
             </div>
             <div className="form-group">
-              <input type="password" className="form-control" placeholder="Senha *" value={password} onChange={e => setPassword(e.target.value)} />
+              <input type="password" className="form-control" placeholder="Senha *" value={this.state.password} onChange={e => this.setState({ password: e.target.value})} />
             </div>
             <button type="submit" className="btn btnRegister">Login</button>
         </form>
@@ -57,4 +63,5 @@ export default function SignInComponent() {
     </div>
   </div>
   );
+    }
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 
-// import { Container } from './styles';
-
+import ChatComponent from '../components/ChatComponent'
 export default function Chat() {
   return (
-   <h1>Chat</h1>
+   <ChatComponent/>
   );
 }
