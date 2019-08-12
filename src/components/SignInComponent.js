@@ -43,7 +43,7 @@ export default class SignInComponent extends Component{
       <div className="col-12 col-md-4 register-left">
         <img src={Logo} alt=""/>
         <h3>Bem Vindo!</h3>
-        <p>You are 30 seconds away from earning your own money!</p>
+        <p>Entre em contato para obter uma conta!</p>
         <input type="submit" name="" value="Criar conta"/><br/>
       </div>
       <div className="col-md-2"></div>
