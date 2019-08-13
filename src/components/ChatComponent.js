@@ -27,16 +27,39 @@ export default class ChatComponent extends Component {
     handleSubmit = async e =>{
       if(this.state.msg !== ''){
         e.preventDefault()
+
+        const user = localStorage.getItem('user')
+
         const input_msg = this.state.msg
+
         this.setState({msg: ''})
-        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: this.state.msg} ] })
+        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg} ] })
+
         const token = await localStorage.getItem('token')
         const msg = await api.post('/message', {text:input_msg, content:{}},      {
             headers: { Authorization: "Bearer " + token }
           })
-        console.log(msg);
+
+          
+          console.log(msg);
           const bot_output =msg.data.output.text
-        this.setState({mensagens: [...this.state.mensagens, {author: 'Maquinista', content: bot_output}]})
+          this.setState({mensagens: [...this.state.mensagens, {author: 'Maquinista', content: bot_output}]})
+          
+          const your_chat = await api.post('/chat/msg', {
+            destination: user,
+            author: "Você",
+            content: input_msg
+          },      {
+            headers: { Authorization: "Bearer " + token }
+          })
+        const bot_chat = await api.post('/chat/msg', {
+          destination: user,
+          author: "Maquinista",
+          content:  bot_output[0]
+        },      {
+          headers: { Authorization: "Bearer " + token }
+        })
+
         console.log(this.state.mensagens);
         
       }
