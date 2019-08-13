@@ -8,13 +8,13 @@ export default class ChatComponent extends Component {
 
     state={
         msg: '',
-        you: [],
-        bot: [],
         mensagens:[]
     }
 
     handleSubmit = async e =>{
+      if(this.state.msg !== ''){
         e.preventDefault()
+        this.setState({msg: ''})
         this.setState({ mensagens: [...this.state.mensagens, {name: 'Você', text: this.state.msg} ] })
         const token = await localStorage.getItem('token')
         const msg = await api.post('/message', {text:this.state.msg, content:{}},      {
@@ -24,7 +24,7 @@ export default class ChatComponent extends Component {
           const bot_output =msg.data.output.text
         this.setState({mensagens: [...this.state.mensagens, {name: 'Maquinista', text: bot_output}]})
         
-        this.setState({msg: ''})
+      }
     }
 
   render() {
