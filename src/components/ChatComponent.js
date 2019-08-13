@@ -20,7 +20,7 @@ export default class ChatComponent extends Component {
         const msg = await api.post('/message', {text:this.state.msg, content:{}},      {
             headers: { Authorization: "Bearer " + token }
           })
-        console.log(msg.data.output.text);
+        console.log(msg);
           const bot_output =msg.data.output.text
         this.setState({mensagens: [...this.state.mensagens, {name: 'Maquinista', text: bot_output}]})
         
