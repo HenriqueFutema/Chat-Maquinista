@@ -1,11 +1,19 @@
 html,
 body {
     height: 100%;
-    background: -webkit-linear-gradient(right, #81F1A3, #222);
+    width: 100%;
+    height: 100%;
+    background-color: #36e44c;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.2) 10%, transparent 10%), radial-gradient(rgba(0, 0, 0, 0.2) 10%, transparent 10%);
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    background-position: 0 0, 50px 50px;
+    z-index: -1000;
+    position: absolute;
+    animation: backMove 12s linear infinite;
 }
 
 .register {
-    background: -webkit-linear-gradient(right, #81F1A3, #222);
     padding-top: 3%;
     height: 100vh;
 }
@@ -30,40 +38,21 @@ body {
 
 .register-right {
     background: #f8f9fa;
-    border-top-left-radius: 60% 20%;
-    border-bottom-left-radius: 90% 60%;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
     padding: 5%;
     margin-top: 4%;
 }
 
 .form-control:focus {
-    border-color: #81F1A3;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #81F1A3;
+    border-color: #36e44c;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #36e44c;
 }
 
 .register-left img {
     margin-top: 15%;
     width: 60%;
-    -webkit-animation: mover 2s infinite alternate;
     animation: mover 1s infinite alternate;
-}
-
-@-webkit-keyframes mover {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes mover {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
 }
 
 .register-left p {
@@ -82,7 +71,7 @@ body {
     border: none;
     border-radius: 1.5rem;
     padding: 3%;
-    background: #81F1A3;
+    background: #36e44c;
     color: #495057;
     font-weight: 600;
     width: 70%;
@@ -93,4 +82,22 @@ body {
     text-align: center;
     margin-bottom: -15%;
     color: #495057;
+}
+
+@keyframes backMove {
+    from {
+        background-position: 0 0, 50px 50px
+    }
+    to {
+        background-position: 100px 100px, 150px 150px
+    }
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
 }

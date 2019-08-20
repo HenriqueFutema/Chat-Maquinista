@@ -1,9 +1,3 @@
-html,
-body {
-    background: -webkit-linear-gradient(right, #81F1A3, #222);
-    height: 100vh;
-}
-
 .container {
     margin-top: 2%;
 }
