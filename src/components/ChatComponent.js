@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './style2.css';
-
 import api from '../services/api'
 
 export default class ChatComponent extends Component {
