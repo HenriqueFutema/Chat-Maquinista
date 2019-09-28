@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import api from '../services/api'
 
+import './style.css'
+
 export default class ChatComponent extends Component {
 
     state={
@@ -9,18 +11,6 @@ export default class ChatComponent extends Component {
         mensagens:[]
     }
 
-    async componentDidMount(){
-      const user_id = localStorage.getItem('user')
-      const token = await localStorage.getItem('token')
-
-      const response = await api.get(`chat/${user_id}`,{
-        headers: {  Authorization: "Bearer " + token }
-      })
-      
-      console.log(response.data.chat);
-      this.setState({ mensagens: response.data.chat })
-      
-    }
 
     handleSubmit = async e =>{
       if(this.state.msg !== ''){
@@ -65,36 +55,24 @@ export default class ChatComponent extends Component {
 
   render() {
     return(
-  <div class="container">
-    <div class="container-fluid">
-      <div class="row">
-        <div class='chatbox col-md-12'>
-          <div class="row">
-            <div class="chatbox__messages__user-message--ind-message chatbox__messages mt-3">
-                <div class="col-lg-12">
-                  <p class="name">O Maquinista</p><br/>
-                  <p class="message">Olá, seja bem vindo, eu sou O Maquinista e irei ajudar você a escolher o seu curso na FIAP.</p>
-                </div>
+      <div className="container">
 
-            </div>
+        <div className="row justify-content-end">
 
-{ this.state.mensagens.map((msg, key) => (
-
-            <div class="chatbox__messages__user-message--ind-message chatbox__messages mt-3 col-lg-11" key={msg._id}>
-              <p class="col-lg-8">{msg.author}:
-              <br/>
-              {msg.content}
-              </p>
-            </div>
-            )) }
+          <div className="col-8 msg">
+            <h4>Test</h4>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Digite uma mensagem.." value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
-          </form>
+
         </div>
+
+
+        <form onSubmit={this.handleSubmit} className="form-group row">
+            <input className="form-control m-3" type="text" placeholder="Nova Mensagem" />
+
+
+        </form>
       </div>
-    </div>
-  </div>
+
     );
   }
 }
