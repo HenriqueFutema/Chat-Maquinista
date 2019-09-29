@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import api from '../services/api'
+import Message from './Message'
 
 import './style.css'
 
@@ -19,7 +20,7 @@ export default class ChatComponent extends Component {
         const input_msg = this.state.msg
 
         this.setState({msg: ''})
-        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg} ] })
+        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg, user: true} ] })
 
         const token = await localStorage.getItem('token')
         const msg = await api.post('/message', {text:input_msg},)
@@ -29,7 +30,7 @@ export default class ChatComponent extends Component {
           console.log(msg.data.response.output.generic);
 
           msg.data.response.output.generic.map(txt =>(
-            this.setState({ mensagens: [...this.state.mensagens, {author: 'Bot', content: txt.text} ] })
+            this.setState({ mensagens: [...this.state.mensagens, {author: 'Bot', content: txt.text, user: false} ] })
 
           ))
 
@@ -56,17 +57,11 @@ export default class ChatComponent extends Component {
 
         { this.state.mensagens.map((msg, key) => (
 
-          <div className="row mt-3" key={msg._id}>
-            <div className="col-8 msg p-2">
-              <h6>{msg.author}:              </h6>
-              <p>{msg.content}</p>
-
-            </div>
-          </div>
+          <Message msg={msg}/>
           )) }
 
 
-        <form onSubmit={this.handleSubmit} className="form-group row">
+        <form onSubmit={this.handleSubmit} className="form-group row mt-5">
             <input className="form-control m-3" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
 
 
