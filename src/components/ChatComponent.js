@@ -58,10 +58,9 @@ export default class ChatComponent extends Component {
 
           <div className="row mt-3" key={msg._id}>
             <div className="col-8 msg p-2">
-              <p className="col-lg-8">{msg.author}:
-              <br/>
-              {msg.content}
-              </p>
+              <h6>{msg.author}:              </h6>
+              <p>{msg.content}</p>
+
             </div>
           </div>
           )) }
