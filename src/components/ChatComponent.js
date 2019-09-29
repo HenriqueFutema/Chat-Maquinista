@@ -8,15 +8,13 @@ export default class ChatComponent extends Component {
 
     state={
         msg: '',
-        mensagens:[]
+        mensagens:[],
     }
 
 
     handleSubmit = async e =>{
+      e.preventDefault()
       if(this.state.msg !== ''){
-        e.preventDefault()
-
-        const user = localStorage.getItem('user')
 
         const input_msg = this.state.msg
 
@@ -24,29 +22,20 @@ export default class ChatComponent extends Component {
         this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg} ] })
 
         const token = await localStorage.getItem('token')
-        const msg = await api.post('/message', {text:input_msg, content:{}},      {
-            headers: { Authorization: "Bearer " + token }
-          })
+        const msg = await api.post('/message', {text:input_msg},)
 
           
           console.log(msg);
-          const bot_output =msg.data.output.text
-          this.setState({mensagens: [...this.state.mensagens, {author: 'Maquinista', content: bot_output}]})
-          
-          const your_chat = await api.post('/chat/msg', {
-            destination: user,
-            author: "Você",
-            content: input_msg
-          },      {
-            headers: { Authorization: "Bearer " + token }
-          })
-        const bot_chat = await api.post('/chat/msg', {
-          destination: user,
-          author: "Maquinista",
-          content:  bot_output[0]
-        },      {
-          headers: { Authorization: "Bearer " + token }
-        })
+          console.log(msg.data.response.output.generic);
+
+          msg.data.response.output.generic.map(txt =>(
+            this.setState({ mensagens: [...this.state.mensagens, {author: 'Bot', content: txt.text} ] })
+
+          ))
+
+          // const bot_output =msg.data.output.text
+          // this.setState({mensagens: [...this.state.mensagens, {author: 'Maquinista', content: bot_output}]})
+
 
         console.log(this.state.mensagens);
         
@@ -57,17 +46,29 @@ export default class ChatComponent extends Component {
     return(
       <div className="container">
 
-        <div className="row justify-content-end">
+        <div className="row mt-3">
 
-          <div className="col-8 msg">
-            <h4>Test</h4>
+          <div className="col-8 msg p-2">
+            <h4>Bot - a</h4>
           </div>
 
         </div>
 
+        { this.state.mensagens.map((msg, key) => (
+
+          <div className="row mt-3" key={msg._id}>
+            <div className="col-8 msg p-2">
+              <p className="col-lg-8">{msg.author}:
+              <br/>
+              {msg.content}
+              </p>
+            </div>
+          </div>
+          )) }
+
 
         <form onSubmit={this.handleSubmit} className="form-group row">
-            <input className="form-control m-3" type="text" placeholder="Nova Mensagem" />
+            <input className="form-control m-3" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
 
 
         </form>
