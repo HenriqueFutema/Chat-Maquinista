@@ -52,7 +52,7 @@ export default class ChatComponent extends Component {
     return(
       <div>
         <div className="det">
-          <img src={img1} alt="" srcset=""/>
+          <img src={img1} alt="" srcset="" className="img-fluid"/>
         </div>
       <div className="container">
 

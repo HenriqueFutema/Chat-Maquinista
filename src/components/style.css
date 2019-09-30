@@ -27,3 +27,13 @@ input {
     left: 100;
     top: 0;
 }
+
+.det2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.logo {
+    margin-top: 10%;
+}
