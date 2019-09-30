@@ -3,10 +3,31 @@ import React, { Component } from 'react';
 import img2 from '../assets/effects (2).png'
 import logoFiap from '../assets/logo-fiap.png'
 
+import swal from 'sweetalert'
+
 export default class LoginComponent extends Component {
 
     state = {
         name: ''
+    }
+
+    handleSubmit = async (e) =>{
+
+        e.preventDefault()
+
+        if (this.state.name !== '') {
+            
+            await localStorage.setItem('name', this.state.name)
+
+            return this.props.onRedirectChat()
+
+
+        }else{
+
+            return swal('Preencha todos os campos', 'Tente novamente', 'error')
+
+        }
+
     }
 
   render() {
