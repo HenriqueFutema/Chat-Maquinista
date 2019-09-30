@@ -40,7 +40,7 @@ export default class LoginComponent extends Component {
             <div className="container mt-5">
 
                 <div className="row h-100 justify-content-center align-items-center logo">
-                    <div className="col-3">
+                    <div className="col-lg-3 col-md-6 col-10">
                         <img src={logoFiap} alt="" srcSet="" className="img-fluid"/>
 
                         <form onSubmit={this.handleSubmit} className="form-group row mt-3">
