@@ -84,7 +84,7 @@ export default class ChatComponent extends Component {
 
 
         <form onSubmit={this.handleSubmit} className="form-group row mt-5 chat-inp">
-            <input className="form-control m-3 col-lg-10 col-md-9 col-6" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
+            <input className="form-control m-3 col-lg-10 col-md-9 col-6" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} autoFocus/>
 
             <button type="submit" className="btn btn-primary btn-enviar btn-lg">></button>
 
