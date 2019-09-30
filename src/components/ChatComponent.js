@@ -72,7 +72,7 @@ export default class ChatComponent extends Component {
 
 
         <form onSubmit={this.handleSubmit} className="form-group row mt-5">
-            <input className="form-control m-3" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
+            <input className="form-control m-3 chat-inp" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} />
 
 
         </form>

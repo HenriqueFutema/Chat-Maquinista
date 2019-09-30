@@ -1,10 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 html,
 body {
     background: -webkit-linear-gradient(left, rgb(36, 36, 36), rgb(97, 97, 97));
     height: 100vh;
 }
 
-input {
+.chat-inp {
     position: fixed;
     width: 90% !important;
     left: 0;
@@ -35,5 +36,19 @@ input {
 }
 
 .logo {
-    margin-top: 10%;
+    margin-top: 14%;
+}
+
+.btn-entrar {
+    background-color: #ed145b;
+    border-color: #ed145b;
+    border-radius: 0;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-entrar:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #ed145b;
 }
