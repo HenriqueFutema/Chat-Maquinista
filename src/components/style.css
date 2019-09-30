@@ -1,6 +1,6 @@
 html,
 body {
-    background: -webkit-linear-gradient(left, rgb(36, 36, 36), rgb(53, 52, 52));
+    background: -webkit-linear-gradient(left, rgb(36, 36, 36), rgb(97, 97, 97));
     height: 100vh;
 }
 
@@ -13,5 +13,17 @@ input {
 
 .msg {
     background: #fff;
-    border-radius: 10px
+    border: 2px solid #ed145b;
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    border-color: #ed145b;
+    box-shadow: 0 0 0 0.2rem rgba(237, 20, 91, 0.25);
+}
+
+.det {
+    position: fixed;
+    left: 100;
+    top: 0;
 }
