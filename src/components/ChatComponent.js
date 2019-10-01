@@ -5,7 +5,7 @@ import Message from './Message'
 
 import './style.css'
 
-import img1 from '../assets/effects (1).png'
+import img1 from '../assets/effects (2).png'
 
 export default class ChatComponent extends Component {
 

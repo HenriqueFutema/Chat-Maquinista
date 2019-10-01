@@ -22,7 +22,7 @@ export default class Message extends Component {
                         <p>{this.props.msg.content}</p>
                     )
                     :(
-                        <img src={this.props.msg.content} alt="" srcset="" className="img-fluid"/>
+                        <p className="text-center"><img src={this.props.msg.content} alt="" srcset="" className="img-fluid"/></p>
                     )
 
                 }

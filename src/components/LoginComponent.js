@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import img2 from '../assets/effects (2).png'
+import img2 from '../assets/effects (1).png'
 import logoFiap from '../assets/logo-fiap.png'
 
 import swal from 'sweetalert'
