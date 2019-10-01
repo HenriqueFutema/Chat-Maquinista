@@ -18,7 +18,14 @@ export default class Message extends Component {
                 <div className="row mt-3" key={this.props.msg._id}>
                     <div className="col-8 msg p-2">
                     <h6>{this.props.msg.author}:              </h6>
-                    <p>{this.props.msg.content}</p>
+                    { this.props.msg.type === 'text' ? (
+                        <p>{this.props.msg.content}</p>
+                    )
+                    :(
+                        <img src={this.props.msg.content} alt="" srcset="" className="img-fluid"/>
+                    )
+
+                }
 
                     </div>
                 </div>

@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 html,
 body {
-    background: -webkit-linear-gradient(left, rgb(36, 36, 36), rgb(97, 97, 97));
+    background: -webkit-linear-gradient(left, rgb(0, 0, 0), rgb(58, 58, 58));
     height: 100vh;
+}
+
+.tela-login {
+    overflow: hidden;
 }
 
 .chat-inp {
@@ -13,14 +17,15 @@ body {
 }
 
 .msg {
-    background: #fff;
-    border: 2px solid #ed145b;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ed145b;
     border-radius: 10px;
+    color: #fff;
 }
 
 .form-control:focus {
     border-color: #ed145b;
-    box-shadow: 0 0 0 0.2rem rgba(237, 20, 91, 0.25);
+    box-shadow: 0 0 0 0.1rem rgba(237, 20, 91, 0.15);
 }
 
 .det {
@@ -39,12 +44,25 @@ body {
     margin-top: 14%;
 }
 
+.input-entrar {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+}
+
+.input-entrar:focus {
+    border: 0;
+    color: #fff;
+}
+
 .btn-entrar {
     background-color: #ed145b;
     border-color: #ed145b;
     border-radius: 0;
     color: #fff;
     font-family: "Roboto", sans-serif;
+    font-size: 16px !important;
 }
 
 .btn-entrar:hover {

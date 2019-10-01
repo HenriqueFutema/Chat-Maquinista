@@ -13,8 +13,18 @@ export default class ChatComponent extends Component {
         msg: '',
         mensagens:[],
         session: '',
-        name: ''
+        name: '',
+        el: ''
     }
+  
+    componentDidUpdate() {
+      this.scrollToBottom();
+    }
+  
+    scrollToBottom() {
+      this.el.scrollIntoView({ behavior: 'smooth' });
+    }
+  
 
     async componentDidMount(){
 
@@ -22,6 +32,8 @@ export default class ChatComponent extends Component {
       const user = await localStorage.getItem('name')
 
       this.setState({ name: user })
+
+      this.scrollToBottom();
 
     }
 
@@ -33,7 +45,7 @@ export default class ChatComponent extends Component {
         const input_msg = this.state.msg
 
         this.setState({msg: ''})
-        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg, user: true} ] })
+        this.setState({ mensagens: [...this.state.mensagens, {author: 'Você', content: input_msg, type: 'text', user: true} ] })
 
         const msg = await api.post('/message', {session_id: this.state.session ,text:input_msg},)
 
@@ -45,7 +57,7 @@ export default class ChatComponent extends Component {
         this.setState({ session: msg.data.session })
         
         msg.data.response.output.generic.map(txt =>(
-          this.setState({ mensagens: [...this.state.mensagens, {author: 'Bot', content: txt.text, user: false} ] })
+          this.setState({ mensagens: [...this.state.mensagens, {author: 'Bot', content: txt.text || txt.source, type: txt.response_type ,user: false} ] })
 
         ))
 
@@ -60,13 +72,14 @@ export default class ChatComponent extends Component {
         <div className="det">
           <img src={img1} alt="" srcSet="" className="img-fluid"/>
         </div>
-      <div className="container">
+      <div className="container chat-container">
 
 
         <div className="row mt-3">
 
           <div className="col-8 msg p-2">
-            <h4>Bot - Olá {this.state.name}</h4>
+            <h6>Bot:</h6>
+            <p>Olá {this.state.name}, tudo bem?</p>
           </div>
 
         </div>
@@ -79,17 +92,19 @@ export default class ChatComponent extends Component {
           <br/>
           <br/>
           <br/>
-          <br/>
+          <br ref={el => { this.el = el; }}/>
 
+
+
+      </div>
 
 
         <form onSubmit={this.handleSubmit} className="form-group row mt-5 chat-inp">
-            <input className="form-control m-3 col-lg-10 col-md-9 col-6" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} autoFocus/>
+            <input className="form-control m-3 col-lg-10 col-md-9 col-6 input-entrar" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} autoFocus/>
 
             <button type="submit" className="btn btn-primary btn-enviar btn-lg">></button>
 
         </form>
-      </div>
       </div>
 
     );

@@ -32,7 +32,7 @@ export default class LoginComponent extends Component {
 
   render() {
     return(
-        <div>
+        <div className="tela-login">
             <div className="det2">
                 <img src={img2} alt="" srcSet="" className="img-fluid"/>
             </div>
@@ -43,9 +43,9 @@ export default class LoginComponent extends Component {
                     <div className="col-lg-3 col-md-6 col-10">
                         <img src={logoFiap} alt="" srcSet="" className="img-fluid"/>
 
-                        <form onSubmit={this.handleSubmit} className="form-group row mt-3">
+                        <form onSubmit={this.handleSubmit} className="form-group row mt-3 form-msg">
 
-                            <input className="form-control my-3" autoFocus type="text" placeholder="Seu Nome" value={this.state.name} onChange={e => this.setState({name : e.target.value})} />
+                            <input className="form-control my-3 input-entrar" autoFocus type="text" placeholder="Seu Nome" value={this.state.name} onChange={e => this.setState({name : e.target.value})} />
 
                             <button type="submit" className="btn btn-primary btn-lg btn-block btn-entrar">ENTRAR</button>
 
