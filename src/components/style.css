@@ -66,6 +66,12 @@ body {
     top: 0;
 }
 
+.det3 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
 .logo {
     margin-top: 14%;
 }

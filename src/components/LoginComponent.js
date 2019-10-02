@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import img1 from '../assets/effects (2).png'
 import img2 from '../assets/effects (1).png'
 import logoFiap from '../assets/logo-fiap.png'
 
@@ -35,6 +36,9 @@ export default class LoginComponent extends Component {
         <div className="tela-login">
             <div className="det2">
                 <img src={img2} alt="" srcSet="" className="img-fluid"/>
+            </div>
+            <div className="det3">
+                <img src={img1} alt="" srcSet="" className="img-fluid"/>
             </div>
 
             <div className="container mt-5">
