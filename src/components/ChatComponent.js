@@ -14,7 +14,8 @@ export default class ChatComponent extends Component {
         mensagens:[],
         session: '',
         name: '',
-        el: ''
+        el: '',
+        validateInpput: false
     }
   
     componentDidUpdate() {
@@ -42,6 +43,8 @@ export default class ChatComponent extends Component {
       e.preventDefault()
       if(this.state.msg !== ''){
 
+        this.setState({ validateInpput: true })
+
         const input_msg = this.state.msg
 
         this.setState({msg: ''})
@@ -62,7 +65,8 @@ export default class ChatComponent extends Component {
         ))
 
         console.log(this.state.mensagens);
-        
+        this.setState({ validateInpput: false })
+        this.refs.inpMsg.focus()
       }
     }
 
@@ -100,7 +104,7 @@ export default class ChatComponent extends Component {
 
 
         <form onSubmit={this.handleSubmit} className="form-group row mt-5 chat-inp">
-            <input className="form-control m-3 col-lg-10 col-md-9 col-6 input-entrar" type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} autoFocus/>
+            <input className="form-control m-3 col-lg-10 col-md-9 col-6 input-entrar" ref="inpMsg" disabled={this.state.validateInpput} type="text" placeholder="Nova Mensagem" value={this.state.msg} onChange={e => this.setState({msg : e.target.value})} autoFocus/>
 
             <button type="submit" className="btn btn-primary btn-enviar btn-lg">></button>
 
