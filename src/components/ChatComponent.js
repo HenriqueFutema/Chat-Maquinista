@@ -79,7 +79,7 @@ export default class ChatComponent extends Component {
 
           <div className="col-8 msg p-2">
             <h6>Bot:</h6>
-            <p>Olá {this.state.name}, tudo bem?</p>
+            <p>Olá {this.state.name}, tudo bem? Prazer eu sou o BOG</p>
           </div>
 
         </div>
