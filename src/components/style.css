@@ -12,14 +12,14 @@ body {
 
 /* Track */
 
- ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: #4d0808;
 }
 
 
 /* Handle */
 
- ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #ed145b;
     border-radius: 10px;
 }
@@ -27,7 +27,7 @@ body {
 
 /* Handle on hover */
 
- ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
@@ -38,8 +38,10 @@ body {
 .chat-inp {
     position: fixed;
     width: 100% !important;
-    left: 40px;
+    left: 1%;
+    right: 1%;
     bottom: 0;
+    background: -webkit-linear-gradient(left, rgb(0, 0, 0), rgb(58, 58, 58));
 }
 
 .msg {
