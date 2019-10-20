@@ -67,6 +67,12 @@ export default class ChatComponent extends Component {
         console.log(this.state.mensagens);
         this.setState({ validateInpput: false })
         this.refs.inpMsg.focus()
+
+          this.scrollToBottom()
+
+          setTimeout(() =>{ this.scrollToBottom() }, 100);
+
+
       }
     }
 
